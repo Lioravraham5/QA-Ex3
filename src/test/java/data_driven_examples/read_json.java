@@ -35,6 +35,7 @@ public class read_json {
   private Map<String, Object> vars;
   private JSONArray users;
   JavascriptExecutor js;
+  
   @Before 
   public void setUp() throws IOException, ParseException {
 	//System.setProperty("webdriver.chrome.driver","C:\\Users\\acer\\Downloads\\chromedriver_win32\\chromedriver.exe");
