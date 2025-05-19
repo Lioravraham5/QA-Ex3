@@ -24,6 +24,5 @@ public class DriverFactory {
 //		js = (JavascriptExecutor) driver;
 //		vars = new HashMap<String, Object>();
 		return new ChromeDriver();
-
 	}
 }

@@ -1,50 +1,104 @@
 package pages;
 
+import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class SignUpPage extends BasePage{
+import utils.Log;
 
-	public SignUpPage(WebDriver driver) {
-		super(driver);
-		
-	}
-	
-	public void goTo() {
-        driver.findElement(By.xpath("//*[@id=\"Menu\"]/div[1]/a[3]")).click();
+import org.apache.logging.log4j.*;
+
+public class SignUpPage extends BasePage {
+
+    // Base paths
+    private final String userTableBase = "//*[@id=\"CenterForm\"]/form/table[1]/tbody/tr[%d]/td[2]/input";
+    private final String accountTableBase = "//*[@id=\"CenterForm\"]/form/table[2]/tbody/tr[%d]/td[2]/input";
+    private final String profileTableBase = "//*[@id=\"CenterForm\"]/form/table[3]/tbody/tr[%d]/td[2]/input";
+
+    // Locators – User Info
+    private final By userIdField = By.xpath(String.format(userTableBase, 1));
+    private final By newPasswordField = By.xpath(String.format(userTableBase, 2));
+    private final By confirmPasswordField = By.xpath(String.format(userTableBase, 3));
+
+    // Locators – Account Info
+    private final By firstNameField = By.xpath(String.format(accountTableBase, 1));
+    private final By lastNameField = By.xpath(String.format(accountTableBase, 2));
+    private final By emailField = By.xpath(String.format(accountTableBase, 3));
+    private final By phoneField = By.xpath(String.format(accountTableBase, 4));
+    private final By address1Field = By.xpath(String.format(accountTableBase, 5));
+    private final By address2Field = By.xpath(String.format(accountTableBase, 6));
+    private final By cityField = By.xpath(String.format(accountTableBase, 7));
+    private final By stateField = By.xpath(String.format(accountTableBase, 8));
+    private final By zipField = By.xpath(String.format(accountTableBase, 9));
+    private final By countryField = By.xpath(String.format(accountTableBase, 10));
+
+    // Locators – Profile Info
+    private final By languageDropdown = By.name("languagePreference");
+    private final By categoryDropdown = By.name("favouriteCategoryId");
+    private final By listCheckbox = By.xpath(String.format(profileTableBase, 3));
+    private final By bannerCheckbox = By.xpath(String.format(profileTableBase, 4));
+
+    // Locator – Submit button
+    private final By submitButton = By.xpath("//*[@id=\"CenterForm\"]/form/div/button");
+
+    // Locator – Navigation
+    private final By signUpLink = By.xpath("//*[@id=\"Menu\"]/div[1]/a[3]");
+    
+    public SignUpPage(WebDriver driver) {
+        super(driver);
     }
 
-    public void fillUserInformation(String username, String password) {
-        driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/table[1]/tbody/tr[1]/td[2]/input")).sendKeys(username);
-        driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/table[1]/tbody/tr[2]/td[2]/input")).sendKeys(password);
-        driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/table[1]/tbody/tr[3]/td[2]/input")).sendKeys(password);
+    public void goTo() {
+        driver.findElement(signUpLink).click();
     }
 
-    public void fillAccountInformation(String value) {
-        for (int i = 1; i <= 10; i++) {
-            driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/table[2]/tbody/tr[" + i + "]/td[2]/input")).sendKeys(value);
+    public void fillForm(JSONObject data) {
+        // User Info
+        driver.findElement(userIdField).sendKeys(safe(data, "User ID"));
+        driver.findElement(newPasswordField).sendKeys(safe(data, "New password"));
+        driver.findElement(confirmPasswordField).sendKeys(safe(data, "Confirm password"));
+
+        // Account Info
+        driver.findElement(firstNameField).sendKeys(safe(data, "First name"));
+        driver.findElement(lastNameField).sendKeys(safe(data, "Last name"));
+        driver.findElement(emailField).sendKeys(safe(data, "Email"));
+        driver.findElement(phoneField).sendKeys(safe(data, "Phone"));
+        driver.findElement(address1Field).sendKeys(safe(data, "Address 1"));
+        driver.findElement(address2Field).sendKeys(safe(data, "Address 2"));
+        driver.findElement(cityField).sendKeys(safe(data, "City"));
+        driver.findElement(stateField).sendKeys(safe(data, "State"));
+        driver.findElement(zipField).sendKeys(safe(data, "Zip"));
+        driver.findElement(countryField).sendKeys(safe(data, "Country"));
+
+        // Profile Info
+        if (data.containsKey("Language Preference") && data.get("Language Preference") != null)
+            new Select(driver.findElement(languageDropdown)).selectByVisibleText(data.get("Language Preference").toString());
+
+        if (data.containsKey("Favourite Category") && data.get("Favourite Category") != null)
+            new Select(driver.findElement(categoryDropdown)).selectByVisibleText(data.get("Favourite Category").toString());
+
+        if (Boolean.TRUE.equals(data.get("Enable MyList"))) {
+            driver.findElement(listCheckbox).click();
+        }
+
+        if (Boolean.TRUE.equals(data.get("Enable MyBanner"))) {
+            driver.findElement(bannerCheckbox).click();
         }
     }
 
-    public void fillProfileInformation() {
-        new Select(driver.findElement(By.name("languagePreference"))).selectByVisibleText("French");
-        new Select(driver.findElement(By.name("favouriteCategoryId"))).selectByVisibleText("Cats");
-
-        driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/table[3]/tbody/tr[3]/td[2]/input")).click(); // listOption
-        driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/table[3]/tbody/tr[4]/td[2]/input")).click(); // bannerOption
-    }
-
     public void submit() {
-        driver.findElement(By.xpath("//*[@id=\"CenterForm\"]/form/div/button")).click();
+        driver.findElement(submitButton).click();
     }
 
-    public void signUp(String username, String password) {
+    public void signUp(JSONObject testCase) {
         goTo();
-        fillUserInformation(username, password);
-        fillAccountInformation(username);
-        fillProfileInformation();
+        fillForm(testCase);
         submit();
     }
 
+    private String safe(JSONObject obj, String key) {
+        Object value = obj.get(key);
+        return value != null ? value.toString() : "";
+    }
 }
