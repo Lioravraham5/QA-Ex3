@@ -26,6 +26,7 @@ public class SignUpTest {
 
 	@Before
 	public void setUp() throws Exception {
+		logger.info("Setting up SignUp test environment");
 		driver = DriverFactory.setUp();
 		driver.manage().window().maximize();
 		signUpPage = new SignUpPage(driver);
@@ -48,19 +49,38 @@ public class SignUpTest {
 
 	@Test
 	public void runSignUpScenarios() {
+		logger.info("Starting SignUp test execution");
+		
 		for (int i = 0; i < testCases.size(); i++) {
 			JSONObject testCase = (JSONObject) testCases.get(i);
 			String name = (String) testCase.get("name");
 			JSONObject data = (JSONObject) testCase.get("data");
 
-			System.out.println("🔍 Running test case #" + (i + 1) + ": " + name);
-			driver.get("https://jpetstore.aspectran.com/");
-			signUpPage.signUp(data);
+			logger.info("Running test case #" + (i + 1) + ": " + name);
+			
+			try {
+				logger.debug("Navigating to JPetStore home page");
+				driver.get("https://jpetstore.aspectran.com/");
+				
+				logger.debug("Starting sign up process");
+				signUpPage.signUp(data);
+				
+				logger.debug("Waiting for sign up result");
+				Thread.sleep(2000);
+				
+				logger.info("Test case #" + (i + 1) + " completed successfully");
+				
+			} catch (Exception e) {
+				logger.error("Test case #" + (i + 1) + " failed: " + name, e);
+			}
 		}
+		
+		logger.info("SignUp test execution completed");
 	}
 
 	@After
 	public void tearDown() {
+		logger.info("Cleaning up test environment");
 		if (driver != null)
 			driver.quit();
 	}

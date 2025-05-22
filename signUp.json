@@ -90,7 +90,7 @@
     {
         "name": "Long User ID",
         "data": {
-            "User ID": "aaaaaaaaaaaaaaaaaaaaaaaaa",
+            "User ID": "aaaaaaaaaaaaaaaaaaaaaaaaaAaaaaaaaaaaaaaaaaaaaaaaaa",
             "New password": "123456789",
             "Confirm password": "123456789",
             "First name": "Alex",
@@ -152,5 +152,93 @@
             "Enable MyList": false,
             "Enable MyBanner": false
         }
-    }
+    },
+    {
+        "name": "Password Mismatch",
+        "data": {
+            "User ID": "alex123",
+            "New password": "123456789",
+            "Confirm password": "987654321",
+            "First name": "Alex",
+            "Last name": "Avraham",
+            "Email": "alex@gmail.coom",
+            "Phone": "0547875474",
+            "Address 1": "Hachalutz 42",
+            "Address 2": "Neot afeka",
+            "City": "Ramat Hasharon",
+            "State": "center",
+            "Zip": "4574152",
+            "Country": "Israel",
+            "Language Preference": "English",
+            "Favourite Category": "Fish",
+            "Enable MyList": false,
+            "Enable MyBanner": false
+        }
+    },
+    {
+        "name": "Null User ID",
+        "data": {
+            "User ID": null,
+            "New password": "123456789",
+            "Confirm password": "123456789",
+            "First name": "Alex",
+            "Last name": "Avraham",
+            "Email": "alex@gmail.coom",
+            "Phone": "0547875474",
+            "Address 1": "Hachalutz 42",
+            "Address 2": "Neot afeka",
+            "City": "Ramat Hasharon",
+            "State": "center",
+            "Zip": "4574152",
+            "Country": "Israel",
+            "Language Preference": "English",
+            "Favourite Category": "Fish",
+            "Enable MyList": false,
+            "Enable MyBanner": false
+        }
+    },
+    {
+        "name": "Null New Password",
+        "data": {
+            "User ID": "alex123",
+            "New password": null,
+            "Confirm password": "123456789",
+            "First name": "Alex",
+            "Last name": "Avraham",
+            "Email": "alex@gmail.coom",
+            "Phone": "0547875474",
+            "Address 1": "Hachalutz 42",
+            "Address 2": "Neot afeka",
+            "City": "Ramat Hasharon",
+            "State": "center",
+            "Zip": "4574152",
+            "Country": "Israel",
+            "Language Preference": "English",
+            "Favourite Category": "Fish",
+            "Enable MyList": false,
+            "Enable MyBanner": false
+        }
+    },
+    {
+        "name": "Null Confirm Password",
+        "data": {
+            "User ID": "alex123",
+            "New password": "123456789",
+            "Confirm password": null,
+            "First name": "Alex",
+            "Last name": "Avraham",
+            "Email": "alex@gmail.coom",
+            "Phone": "0547875474",
+            "Address 1": "Hachalutz 42",
+            "Address 2": "Neot afeka",
+            "City": "Ramat Hasharon",
+            "State": "center",
+            "Zip": "4574152",
+            "Country": "Israel",
+            "Language Preference": "English",
+            "Favourite Category": "Fish",
+            "Enable MyList": false,
+            "Enable MyBanner": false
+        }
+    } 
 ]

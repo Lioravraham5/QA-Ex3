@@ -4,12 +4,12 @@ import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
 import utils.Log;
-
 import org.apache.logging.log4j.*;
 
 public class SignUpPage extends BasePage {
+
+    private static final Logger logger = Log.getLogger(SignUpPage.class);
 
     // Base paths
     private final String userTableBase = "//*[@id=\"CenterForm\"]/form/table[1]/tbody/tr[%d]/td[2]/input";
@@ -50,16 +50,21 @@ public class SignUpPage extends BasePage {
     }
 
     public void goTo() {
+        logger.debug("Clicking Sign Up link");
         driver.findElement(signUpLink).click();
     }
 
     public void fillForm(JSONObject data) {
+        logger.debug("Filling sign up form");
+        
         // User Info
+        logger.debug("Entering user information");
         driver.findElement(userIdField).sendKeys(safe(data, "User ID"));
         driver.findElement(newPasswordField).sendKeys(safe(data, "New password"));
         driver.findElement(confirmPasswordField).sendKeys(safe(data, "Confirm password"));
 
         // Account Info
+        logger.debug("Entering account information");
         driver.findElement(firstNameField).sendKeys(safe(data, "First name"));
         driver.findElement(lastNameField).sendKeys(safe(data, "Last name"));
         driver.findElement(emailField).sendKeys(safe(data, "Email"));
@@ -72,22 +77,30 @@ public class SignUpPage extends BasePage {
         driver.findElement(countryField).sendKeys(safe(data, "Country"));
 
         // Profile Info
-        if (data.containsKey("Language Preference") && data.get("Language Preference") != null)
+        logger.debug("Selecting profile preferences");
+        if (data.containsKey("Language Preference") && data.get("Language Preference") != null) {
+            logger.debug("Selecting language preference");
             new Select(driver.findElement(languageDropdown)).selectByVisibleText(data.get("Language Preference").toString());
+        }
 
-        if (data.containsKey("Favourite Category") && data.get("Favourite Category") != null)
+        if (data.containsKey("Favourite Category") && data.get("Favourite Category") != null) {
+            logger.debug("Selecting favourite category");
             new Select(driver.findElement(categoryDropdown)).selectByVisibleText(data.get("Favourite Category").toString());
+        }
 
         if (Boolean.TRUE.equals(data.get("Enable MyList"))) {
+            logger.debug("Enabling MyList option");
             driver.findElement(listCheckbox).click();
         }
 
         if (Boolean.TRUE.equals(data.get("Enable MyBanner"))) {
+            logger.debug("Enabling MyBanner option");
             driver.findElement(bannerCheckbox).click();
         }
     }
 
     public void submit() {
+        logger.debug("Clicking submit button");
         driver.findElement(submitButton).click();
     }
 

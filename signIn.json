@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Existing user enters valid login details and clicks Login",
+        "data": {
+            "Username": "j2ee",
+            "Password": "j2ee"
+        }
+    },
+    {
+        "name": "User enters login details with an error in one of the login fields and clicks Login",
+        "data": {
+            "Username": "j2ee",
+            "Password": "wrongpassword"
+        }
+    },
+    {
+        "name": "User enters login details with an expired password and clicks Login",
+        "data": {
+            "Username": "expireduser",
+            "Password": "expiredpass123"
+        }
+    },
+    {
+        "name": "User does not enter details in one of the login fields and clicks Login",
+        "data": {
+            "Username": "j2ee",
+            "Password": ""
+        }
+    }
+]
