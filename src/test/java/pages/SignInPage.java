@@ -1,109 +1,84 @@
 package pages;
 
-import org.json.simple.JSONObject;
-import org.openqa.selenium.By;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utils.Log;
-import org.apache.logging.log4j.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SignInPage extends BasePage {
-
     private static final Logger logger = Log.getLogger(SignInPage.class);
 
-    // Locators
-    private final By usernameField = By.xpath("//*[@id=\"Signon\"]/form/div/label[1]/input");
-    private final By passwordField = By.xpath("//*[@id=\"Signon\"]/form/div/label[2]/input");
-    private final By loginButton = By.xpath("//*[@id=\"Signon\"]/form/div/div/button");
-    private final By signInLink = By.xpath("//*[@id=\"Menu\"]/div[1]/a[2]");
-    private final By signOutLink = By.xpath("//*[@id=\"Menu\"]/div[1]/a[4]"); // Sign Out link when logged in
+    @FindBy(linkText = "Sign In")   private WebElement signInLink;
+    @FindBy(linkText = "Sign Out")  private WebElement signOutLink;
+    @FindBy(linkText = "My Orders")  private WebElement successfullyLoggedInIndicator;
+    @FindBy(xpath = "//label[contains(text(),'Username')]/input") private WebElement usernameInput;
+    @FindBy(xpath = "//label[contains(text(),'Password')]/input") private WebElement passwordInput;
+    @FindBy(css = "div.button-bar > button[type='submit']")     private WebElement loginButton;
+    @FindBy(css = "div.panel.failed")     private WebElement invalidSignIn;
     
+
     public SignInPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
+    }
+    
+    public SignInPage open() {
+        logger.debug("Opening home page");
+        driver.get("https://jpetstore.aspectran.com/");
+
+        // if already signed in, click “Sign Out” first
+        if (isElementVisible(signOutLink)) {
+            logger.debug("User appears logged in; clicking Sign Out");
+            signOutLink.click();
+            wait.until(ExpectedConditions.invisibilityOf(signOutLink));
+        }
+
+        logger.debug("Clicking Sign In");
+        wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
+        wait.until(ExpectedConditions.visibilityOf(usernameInput));
+        return this;
     }
 
-    public void goTo() {
-        try {
-            logger.debug("Checking if user is already logged in");
-            String menuText = driver.findElement(signInLink).getText();
-            logger.debug("Current menu text: " + menuText);
-            
-            // If menu shows "My Orders" instead of "Sign In", user is logged in
-            if (menuText.contains("My Orders") || menuText.contains("My Account")) {
-                logger.debug("User is logged in, performing logout");
-                try {
-                    driver.findElement(signOutLink).click();
-                    logger.debug("Successfully clicked Sign Out link");
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    logger.debug("Could not find Sign Out link: " + e.getMessage() + ", refreshing page");
-                    driver.get("https://jpetstore.aspectran.com/");
-                    Thread.sleep(1000);
-                }
-            } else {
-                logger.debug("User is not logged in, proceeding to sign in");
-            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        } catch (Exception e) {
-            logger.debug("Issue checking login status: " + e.getMessage());
-        }
-        
-        try {
-            logger.debug("Clicking Sign In link");
-            driver.findElement(signInLink).click();
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        } catch (Exception e) {
-            logger.debug("Issue clicking Sign In: " + e.getMessage() + ", refreshing page");
-            try {
-                driver.get("https://jpetstore.aspectran.com/");
-                Thread.sleep(1000);
-                driver.findElement(signInLink).click();
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public void fillForm(JSONObject data) {
-        logger.debug("Filling sign in form");
-        
-        // Clear and fill username field
-        if (data.containsKey("Username") && data.get("Username") != null) {
-            logger.debug("Entering username");
-            driver.findElement(usernameField).clear();
-            driver.findElement(usernameField).sendKeys(safe(data, "Username"));
-        }
-
-        // Clear and fill password field
-        if (data.containsKey("Password") && data.get("Password") != null) {
-            logger.debug("Entering password");
-            driver.findElement(passwordField).clear();
-            driver.findElement(passwordField).sendKeys(safe(data, "Password"));
-        }
+    public SignInPage enterCredentials(String username, String password) {
+        logger.debug("Entering credentials");
+        usernameInput.clear();
+        usernameInput.sendKeys(username);
+        passwordInput.clear();
+        passwordInput.sendKeys(password);
+        return this;
     }
 
     public void submit() {
-        logger.debug("Clicking login button");
-        driver.findElement(loginButton).click();
+        logger.debug("Submitting login");
+        loginButton.click();
     }
-
-    public void signIn(JSONObject testCase) {
-        goTo();
-        fillForm(testCase);
-        submit();
-        
-        // Wait a moment for the page to respond
+    
+    public String checkFailedToLogIn() {
+        logger.debug("Checking if passing invalid credentials did not sign in the user");
+    	wait.until(
+  			  ExpectedConditions.visibilityOf(invalidSignIn));                
+        return invalidSignIn.getText().trim();
+    }
+    
+    public boolean isUserLoggedIn(int i, String name) {
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            wait.until(ExpectedConditions.visibilityOf(successfullyLoggedInIndicator));
+            return true;
+        } catch (TimeoutException|NoSuchElementException e) {
+            logger.error("Test case #{} ({}) failed", i + 1, name, e);
+            return false;
         }
     }
 
-    private String safe(JSONObject obj, String key) {
-        Object value = obj.get(key);
-        return value != null ? value.toString() : "";
+    public void loginAs(String username, String password) {
+        open()
+          .enterCredentials(username, password)
+          .submit();
     }
 }
+

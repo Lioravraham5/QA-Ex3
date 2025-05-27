@@ -4,27 +4,40 @@
         "data": {
             "Username": "j2ee",
             "Password": "j2ee"
-        }
+        },
+        "expectSuccess": true
     },
     {
         "name": "User enters login details with an error in one of the login fields and clicks Login",
         "data": {
             "Username": "j2ee",
             "Password": "wrongpassword"
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "User enters login details with an expired password and clicks Login",
         "data": {
             "Username": "expireduser",
             "Password": "expiredpass123"
-        }
+        },
+        "expectSuccess": false
     },
     {
-        "name": "User does not enter details in one of the login fields and clicks Login",
+        "name": "User does not enter username details in username login field and clicks Login",
+        "data": {
+            "Username": "",
+            "Password": "j2ee"
+        },
+        "expectSuccess": false
+    },
+    {
+        "name": "User does not enter password details in password login field and clicks Login",
         "data": {
             "Username": "j2ee",
             "Password": ""
-        }
+        },
+        "expectSuccess": false
     }
+
 ]

@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Fish",
+    "productId": "FI-SW-01"
+  },
+  {
+    "category": "Dogs",
+    "productId": "K9-DL-01"
+  },
+  {
+    "category": "Reptiles",
+    "productId": "RP-SN-01"
+  }
+]

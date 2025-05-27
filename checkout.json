@@ -1,0 +1,199 @@
+[
+  {
+    "name": "Valid payment & billing info",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "12/2030",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": true,
+      "errors": []
+    }
+  },
+  {
+    "name": "Missing card number",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "",
+      "expiryDate": "12/2030",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["Card Number is required"]
+    }
+  },
+  {
+    "name": "Invalid card number (non-numeric)",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "ABCDE1234",
+      "expiryDate": "12/2030",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["Card Number must contain only digits"]
+    }
+  },
+  {
+    "name": "Expired card",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "01/2019",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["Card has expired"]
+    }
+  },
+  {
+    "name": "Invalid expiry date format",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "2020-12",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["Expiry date must be in MM/YYYY format"]
+    }
+  },
+  {
+    "name": "Missing first name",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "12/2030",
+      "firstName": "",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["First name is required"]
+    }
+  },
+  {
+    "name": "Missing address line 1",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "12/2030",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["Address 1 is required"]
+    }
+  },
+  {
+    "name": "Invalid ZIP code (letters)",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "12/2030",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "ABC123",
+      "country": "Colombia",
+      "shipToDifferent": false
+    },
+    "expected": {
+      "proceed": false,
+      "errors": ["ZIP code must contain only digits"]
+    }
+  },
+  {
+    "name": "Ship to different address checked",
+    "data": {
+      "cardType": "Visa",
+      "cardNumber": "4111111111111111",
+      "expiryDate": "12/2030",
+      "firstName": "Sofia",
+      "lastName": "Carmelo",
+      "address1": "Manrique",
+      "address2": "San Pedro",
+      "city": "Cúcuta",
+      "state": "Norte de Santander",
+      "zip": "080001",
+      "country": "Colombia",
+      "shipToDifferent": true,
+      "shippingFirstName": "Juan",
+      "shippingLastName": "Perez",
+      "shippingAddress1": "Centro",
+      "shippingAddress2": "",
+      "shippingCity": "Bogotá",
+      "shippingState": "Cundinamarca",
+      "shippingZip": "110111",
+      "shippingCountry": "Colombia"
+    },
+    "expected": {
+      "proceed": true,
+      "errors": []
+    }
+  }
+]

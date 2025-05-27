@@ -3,6 +3,7 @@ package pages;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import utils.Log;
 import org.apache.logging.log4j.*;
@@ -40,7 +41,10 @@ public class SignUpPage extends BasePage {
     private final By bannerCheckbox = By.xpath(String.format(profileTableBase, 4));
 
     // Locator – Submit button
-    private final By submitButton = By.xpath("//*[@id=\"CenterForm\"]/form/div/button");
+    private final By submitButton = By.xpath("//button[normalize-space()='Save Account Information']");
+    
+    // Locator - Successful sign up
+    private final By successfulSignUpBanner = By.cssSelector("#MessageBar p");
 
     // Locator – Navigation
     private final By signUpLink = By.xpath("//*[@id=\"Menu\"]/div[1]/a[3]");
@@ -49,12 +53,13 @@ public class SignUpPage extends BasePage {
         super(driver);
     }
 
-    public void goTo() {
+    public SignUpPage open() {
         logger.debug("Clicking Sign Up link");
         driver.findElement(signUpLink).click();
+        return this;
     }
 
-    public void fillForm(JSONObject data) {
+    public SignUpPage fillForm(JSONObject data) {
         logger.debug("Filling sign up form");
         
         // User Info
@@ -97,15 +102,27 @@ public class SignUpPage extends BasePage {
             logger.debug("Enabling MyBanner option");
             driver.findElement(bannerCheckbox).click();
         }
+        
+        return this;
     }
-
+    
     public void submit() {
         logger.debug("Clicking submit button");
-        driver.findElement(submitButton).click();
+    	driver.findElement(submitButton).click(); 
     }
-
+    
+    public boolean successfulSignup() {
+    	 String messageText = wait.until(ExpectedConditions
+    		    .visibilityOfElementLocated(successfulSignUpBanner)).getText().trim();
+    	 if(messageText.contains("Your account has been created.")) {
+    		 return true;
+    	 }
+    	 return false;
+    }
+    
+    
     public void signUp(JSONObject testCase) {
-        goTo();
+        open();
         fillForm(testCase);
         submit();
     }
