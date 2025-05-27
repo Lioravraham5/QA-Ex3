@@ -1,5 +1,8 @@
 package pages;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -33,6 +36,12 @@ public class PaymentPage extends BasePage {
     // — Actions —
     @FindBy(xpath="//button[@type='submit' and normalize-space()='Continue']")   private WebElement continueButton;
     @FindBy(xpath="//button[@type='button' and normalize-space()='Cancel']")   private WebElement cancelButton;
+    
+    // - Error Message -
+//    @FindBy(xpath="//span[contains(@class,'error-msg') and normalize-space()]")   private WebElement errorMessage;
+    @FindBy(css="span.error-msg") private List<WebElement> errorSpans;
+
+
 
     public PaymentPage(WebDriver driver) {
         super(driver);
@@ -96,4 +105,15 @@ public class PaymentPage extends BasePage {
 
     public void clickCancel() {
         cancelButton.click();
-    }}
+    }
+    
+
+    public Optional<String> findErrorMessage() {
+        return errorSpans.stream()
+                         .map(WebElement::getText)
+                         .map(String::trim)
+                         .filter(s -> !s.isEmpty())
+                         .findFirst();
+    }
+    
+}

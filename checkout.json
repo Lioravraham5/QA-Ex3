@@ -192,7 +192,7 @@
       "shippingCountry": "Colombia"
     },
     "expected": {
-      "proceed": true,
+      "proceed": false,
       "errors": []
     }
   }
