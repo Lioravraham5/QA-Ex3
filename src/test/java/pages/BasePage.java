@@ -19,7 +19,7 @@ public abstract class BasePage {
     protected BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        this.wait   = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait   = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     protected void sendKeysIfPresent(By locator, Object value) {

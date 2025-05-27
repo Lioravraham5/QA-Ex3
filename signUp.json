@@ -2,12 +2,12 @@
     {
         "name": "Valid credentials",
         "data": {
-            "User ID": "alex123",
+            "User ID": "alex123_new",
             "New password": "123456789",
             "Confirm password": "123456789",
             "First name": "Alex",
             "Last name": "Avraham",
-            "Email": "alex@gmail.coom",
+            "Email": "alex_new@gmail.com",
             "Phone": "0547875474",
             "Address 1": "Hachalutz 42",
             "Address 2": "Neot afeka",
@@ -19,7 +19,31 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": true
+    },
+    {
+        "name": "User already exists",
+        "data": {
+            "User ID": "j2ee",
+            "New password": "123456789",
+            "Confirm password": "123456789",
+            "First name": "Alex",
+            "Last name": "Avraham",
+            "Email": "different@gmail.com",
+            "Phone": "0547875474",
+            "Address 1": "Hachalutz 42",
+            "Address 2": "Neot afeka",
+            "City": "Ramat Hasharon",
+            "State": "center",
+            "Zip": "4574152",
+            "Country": "Israel",
+            "Language Preference": "English",
+            "Favourite Category": "Fish",
+            "Enable MyList": false,
+            "Enable MyBanner": false
+        },
+        "expectSuccess": false
     },
     {
         "name": "Short User ID",
@@ -41,7 +65,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Short New Password",
@@ -63,7 +88,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Short Confirm Password",
@@ -85,7 +111,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Long User ID",
@@ -107,7 +134,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Long New Password",
@@ -129,7 +157,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Long Confirm Password",
@@ -151,7 +180,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Password Mismatch",
@@ -173,7 +203,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Null User ID",
@@ -195,7 +226,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Null New Password",
@@ -217,7 +249,8 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     },
     {
         "name": "Null Confirm Password",
@@ -239,6 +272,7 @@
             "Favourite Category": "Fish",
             "Enable MyList": false,
             "Enable MyBanner": false
-        }
+        },
+        "expectSuccess": false
     }
 ]

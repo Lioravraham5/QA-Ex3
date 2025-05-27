@@ -20,6 +20,9 @@ public class DriverFactory {
 	    prefs.put("credentials_enable_service", false);
 	    prefs.put("profile.password_manager_enabled", false);
         prefs.put("safebrowsing.enabled", false);
+        
+        prefs.put("autofill.profile_enabled", false);
+        prefs.put("autofill.address_enabled", false);
 
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);

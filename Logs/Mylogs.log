@@ -1,29 +1,5 @@
-[INFO ] 2025-05-27 13:09:46.250 [main] PaymentTest - Loaded 9 payment/billing scenarios
-[INFO ] 2025-05-27 13:09:46.250 [main] PaymentTest - Starting payment/billing scenarios (9)
-[INFO ] 2025-05-27 13:09:46.251 [main] PaymentTest - Scenario #1: Valid payment & billing info
-[DEBUG] 2025-05-27 13:09:46.699 [main] PaymentTest - Selecting card type: Visa
-[INFO ] 2025-05-27 13:09:48.130 [main] PaymentTest - Scenario #1 passed
-[INFO ] 2025-05-27 13:09:48.130 [main] PaymentTest - Scenario #2: Missing card number
-[DEBUG] 2025-05-27 13:09:48.575 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:09:49.693 [main] PaymentTest - Scenario #2 failed
-[INFO ] 2025-05-27 13:09:49.693 [main] PaymentTest - Scenario #3: Invalid card number (non-numeric)
-[DEBUG] 2025-05-27 13:09:50.112 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:09:51.250 [main] PaymentTest - Scenario #3 failed
-[INFO ] 2025-05-27 13:09:51.250 [main] PaymentTest - Scenario #4: Expired card
-[DEBUG] 2025-05-27 13:09:51.670 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:09:52.836 [main] PaymentTest - Scenario #4 failed
-[INFO ] 2025-05-27 13:09:52.837 [main] PaymentTest - Scenario #5: Invalid expiry date format
-[DEBUG] 2025-05-27 13:09:53.263 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:09:54.453 [main] PaymentTest - Scenario #5 failed
-[INFO ] 2025-05-27 13:09:54.453 [main] PaymentTest - Scenario #6: Missing first name
-[DEBUG] 2025-05-27 13:09:54.917 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:09:56.094 [main] PaymentTest - Scenario #6 failed
-[INFO ] 2025-05-27 13:09:56.094 [main] PaymentTest - Scenario #7: Missing address line 1
-[DEBUG] 2025-05-27 13:09:56.541 [main] PaymentTest - Selecting card type: Visa
-[INFO ] 2025-05-27 13:09:57.745 [main] PaymentTest - Scenario #7 passed
-[INFO ] 2025-05-27 13:09:57.745 [main] PaymentTest - Scenario #8: Invalid ZIP code (letters)
-[DEBUG] 2025-05-27 13:09:58.161 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:09:59.360 [main] PaymentTest - Scenario #8 failed
-[INFO ] 2025-05-27 13:09:59.360 [main] PaymentTest - Scenario #9: Ship to different address checked
-[DEBUG] 2025-05-27 13:09:59.796 [main] PaymentTest - Selecting card type: Visa
-[ERROR] 2025-05-27 13:10:01.038 [main] PaymentTest - Scenario #9 failed
+[INFO ] 2025-05-27 22:13:10.885 [main] SignUpTest - Loaded 12 sign up scenarios
+[INFO ] 2025-05-27 22:13:10.961 [main] SignUpTest - Starting sign up scenarios (12)
+[INFO ] 2025-05-27 22:13:10.962 [main] SignUpTest - Scenario #1: Valid credentials
+[ERROR] 2025-05-27 22:13:21.744 [main] SignUpTest - Scenario #1 failed: Valid credentials
+[INFO ] 2025-05-27 22:13:21.745 [main] SignUpTest - Scenario #2: User already exists
