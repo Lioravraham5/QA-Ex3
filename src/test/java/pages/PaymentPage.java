@@ -13,7 +13,7 @@ import org.openqa.selenium.support.FindBy;
 import utils.Log;
 
 public class PaymentPage extends BasePage {
-    private static final Logger logger = Log.getLogger(SignInPage.class);
+    private static final Logger logger = Log.getLogger(PaymentPage.class);
 
     // — Payment Details —
     @FindBy(name="cardType")                  		private WebElement cardTypeSelect;

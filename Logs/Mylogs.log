@@ -1,5 +1,20 @@
-[INFO ] 2025-05-27 22:13:10.885 [main] SignUpTest - Loaded 12 sign up scenarios
-[INFO ] 2025-05-27 22:13:10.961 [main] SignUpTest - Starting sign up scenarios (12)
-[INFO ] 2025-05-27 22:13:10.962 [main] SignUpTest - Scenario #1: Valid credentials
-[ERROR] 2025-05-27 22:13:21.744 [main] SignUpTest - Scenario #1 failed: Valid credentials
-[INFO ] 2025-05-27 22:13:21.745 [main] SignUpTest - Scenario #2: User already exists
+[INFO ] 2025-05-29 15:08:53.592 [main] CheckoutTest - Starting Checkout Test setup...
+[INFO ] 2025-05-29 15:09:15.968 [main] CheckoutTest - Checkout Test setup completed successfully.
+[INFO ] 2025-05-29 15:09:15.968 [main] CheckoutTest - Starting test: Checkout Back Button navigation...
+[DEBUG] 2025-05-29 15:09:16.589 [main] CheckoutTest - Current URL after clicking Back: https://jpetstore.aspectran.com/order/newOrderForm
+[INFO ] 2025-05-29 15:09:16.589 [main] CheckoutTest - Back button successfully returned to payment page.
+[INFO ] 2025-05-29 15:09:20.616 [main] CheckoutTest - Starting Checkout Test setup...
+[INFO ] 2025-05-29 15:09:35.575 [main] CheckoutTest - Checkout Test setup completed successfully.
+[INFO ] 2025-05-29 15:09:35.577 [main] CheckoutTest - Starting checkout values and confirmation test...
+[DEBUG] 2025-05-29 15:09:35.579 [main] CheckoutTest - Verifying values in Checkout Page...
+[DEBUG] 2025-05-29 15:09:36.181 [main] CheckoutTest - Checking: FirstName = 'Alice'
+[DEBUG] 2025-05-29 15:09:36.392 [main] CheckoutTest - Checking: LastName: = 'Wonder'
+[DEBUG] 2025-05-29 15:09:36.554 [main] CheckoutTest - Checking: Addres1: = '123 Main'
+[DEBUG] 2025-05-29 15:09:36.742 [main] CheckoutTest - Checking: Addres2: = '123 second'
+[DEBUG] 2025-05-29 15:09:36.907 [main] CheckoutTest - Checking: LastName: = 'Wonder'
+[DEBUG] 2025-05-29 15:09:37.066 [main] CheckoutTest - Checking: State: = 'NY'
+[DEBUG] 2025-05-29 15:09:37.225 [main] CheckoutTest - Checking: Zip: = '10001'
+[DEBUG] 2025-05-29 15:09:37.404 [main] CheckoutTest - Checking: Country: = 'USA'
+[INFO ] 2025-05-29 15:09:37.477 [main] CheckoutTest - All checkout fields match payment inputs
+[DEBUG] 2025-05-29 15:09:38.761 [main] CheckoutTest - Confirmation message received: Thank you, your order has been submitted.
+[INFO ] 2025-05-29 15:09:38.761 [main] CheckoutTest - Confirmation page message: Thank you, your order has been submitted.
