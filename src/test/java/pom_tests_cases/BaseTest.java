@@ -14,7 +14,7 @@ import pages.SignUpPage;
 
 public abstract class BaseTest {
 
-    private static final Logger logger = Log.getLogger(SignUpPage.class);
+    private static final Logger logger = Log.getLogger(BaseTest.class);
     protected WebDriver driver;
 
     @Before

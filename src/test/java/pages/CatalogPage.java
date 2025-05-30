@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Log;
 
 public class CatalogPage extends BasePage {
-    private static final Logger logger = Log.getLogger(SignInPage.class);
+    private static final Logger logger = Log.getLogger(CatalogPage.class);
     
     @FindBy(id = "SidebarContent") private WebElement sidebarContent;
     @FindBy(id = "Catalog") private WebElement catalogContent;

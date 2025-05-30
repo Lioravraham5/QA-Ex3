@@ -2,7 +2,6 @@ package pom_tests_cases;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.After;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,7 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import utils.Log;
-import pages.CartPage;
 import pages.CatalogPage;
 import pages.CheckoutPage;
 import pages.PaymentPage;
@@ -20,9 +18,7 @@ import pages.SignInPage;
 
 import java.io.FileReader;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 

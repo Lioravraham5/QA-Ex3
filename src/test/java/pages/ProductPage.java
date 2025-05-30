@@ -20,7 +20,7 @@ public class ProductPage extends BasePage {
 	}
 
 	public int getCartCount() {
-		String text = cartLink.getText().trim();
+		String text = wait.until(ExpectedConditions.visibilityOf(cartLink)).getText().trim();
 		try {
 			return Integer.parseInt(text);
 		} catch (NumberFormatException e) {

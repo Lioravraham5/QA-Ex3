@@ -84,6 +84,7 @@ public class CheckoutPage extends BasePage {
     public void clickConfirm() {
     	logger.debug("Clicking confirm button");
         confirmButton.click();
+        wait.until(ExpectedConditions.urlContains("order/viewOrder"));
     }
 
     public void clickBack() {

@@ -21,7 +21,7 @@ import utils.Log;
 
 public class AddToCartTest extends BaseTest {
 
-    private static final Logger logger = Log.getLogger(SignInTest.class);
+    private static final Logger logger = Log.getLogger(AddToCartTest.class);
     private JSONArray testCases;
     private SignInPage signInPage;
     private CatalogPage catalogPage;

@@ -30,6 +30,14 @@ public class ConfirmationPage extends BasePage {
     @FindBy(xpath = "//td[contains(text(), 'Zip')]/following-sibling::td") private WebElement zipValue;
     @FindBy(xpath = "//td[contains(text(), 'Country')]/following-sibling::td") private WebElement countryValue;
 	
+    // Order
+    @FindBy(xpath = "//*[@id=\"CenterForm\"]/table[5]/tbody/tr[2]/td[1]/a") private WebElement itemIDValue;
+    @FindBy(xpath = "//*[@id=\"CenterForm\"]/table[5]/tbody/tr[2]/td[2]") private WebElement itemDescriptionValue;
+    @FindBy(xpath = "//*[@id=\"CenterForm\"]/table[5]/tbody/tr[2]/td[3]") private WebElement itemQuantityValue;
+    @FindBy(xpath = "//*[@id=\"CenterForm\"]/table[5]/tbody/tr[2]/td[4]") private WebElement itemPriceValue;
+    @FindBy(xpath = "//*[@id=\"CenterForm\"]/table[5]/tbody/tr[2]/td[5]") private WebElement itemTotalCostValue;
+    @FindBy(xpath = "//*[@id=\"CenterForm\"]/table[5]/tbody/tr[3]/th[3]") private WebElement orderTotalCostValue;
+
 	
 	public ConfirmationPage(WebDriver driver) {
 		super(driver);
@@ -43,6 +51,75 @@ public class ConfirmationPage extends BasePage {
           .trim();
     }
 	
+	public String getCardType() {
+        return wait.until(ExpectedConditions.visibilityOf(cardTypeValue)).getText().trim();
+    }
+	
+	public String getCardNumber() {
+        return wait.until(ExpectedConditions.visibilityOf(cardNumberValue)).getText().trim();
+    }
+	
+	public String getExpiryDate() {
+        return wait.until(ExpectedConditions.visibilityOf(expiryDateValue)).getText().trim();
+    }
+	
+	public String getFirstName() {
+        return wait.until(ExpectedConditions.visibilityOf(firstNameValue)).getText().trim();
+    }
+    
+    public String getLastName() {
+        return wait.until(ExpectedConditions.visibilityOf(lastNameValue)).getText().trim();
+    }
+    
+    public String getAddress1() {
+        return wait.until(ExpectedConditions.visibilityOf(address1Value)).getText().trim();
+    }
+
+    public String getAddress2() {
+        return wait.until(ExpectedConditions.visibilityOf(address2Value)).getText().trim();
+    }
+
+    public String getCity() {
+        return wait.until(ExpectedConditions.visibilityOf(cityValue)).getText().trim();
+    }
+
+    public String getState() {
+        return wait.until(ExpectedConditions.visibilityOf(stateValue)).getText().trim();
+    }
+
+    public String getZip() {
+        return wait.until(ExpectedConditions.visibilityOf(zipValue)).getText().trim();
+    }
+
+    public String getCountry() {
+        return wait.until(ExpectedConditions.visibilityOf(countryValue)).getText().trim();
+    }
+    
+    public String getItemID() {
+        return wait.until(ExpectedConditions.visibilityOf(itemIDValue)).getText().trim();
+    }
+    
+    public String getItemDescription() {
+        return wait.until(ExpectedConditions.visibilityOf(itemDescriptionValue)).getText().trim();
+    }
+    
+    public String getItemQuantity() {
+        return wait.until(ExpectedConditions.visibilityOf(itemQuantityValue)).getText().trim();
+    }
+    
+    public String getItemPrice() {
+        return wait.until(ExpectedConditions.visibilityOf(itemPriceValue)).getText().trim();
+    } 
+    
+    public String getItemTotalCost() {
+        return wait.until(ExpectedConditions.visibilityOf(itemTotalCostValue)).getText().trim();
+    }
+    
+    public String getOrderTotalCost() {
+        return wait.until(ExpectedConditions.visibilityOf(orderTotalCostValue)).getText().trim();
+    }
+
+   
 	
 
 	

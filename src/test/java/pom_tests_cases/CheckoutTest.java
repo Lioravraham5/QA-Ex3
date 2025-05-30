@@ -40,6 +40,13 @@ public class CheckoutTest extends BaseTest {
 	private final String testCardNumber = "4111111111111111";
 	private final String testExpiry = "12/25";
 
+	private final String testItemID = "EST-1";
+	private final String testItemDescription = "Large Angelfish";
+	private final String testItemQuantity = "1";
+	private final String testItemPrice = "$16.50";
+	private final String testItemTotalCost = "$16.50";
+	private final String testOrderTotalCost = "$16.50";
+
 	@Before
 	public void initializeCheckoutScenario() {
 		logger.info("Starting Checkout Test setup...");
@@ -79,6 +86,131 @@ public class CheckoutTest extends BaseTest {
 
 		checkoutPage = new CheckoutPage(driver);
 
+		verifyBillingAddressFields(checkoutPage);
+
+		// Click Confirm button
+		checkoutPage.clickConfirm();
+
+		confirmationPage = new ConfirmationPage(driver);
+
+		checkConfirmationMessage(confirmationPage);
+
+		verifyPaymentAndBillingDetails(confirmationPage);
+
+		verifyOrderDetails(confirmationPage);
+
+	}
+	
+	@Test
+	public void testBackButtonReturnsToPaymentPage() {
+		logger.info("Starting test: Checkout Back Button navigation...");
+
+		checkoutPage = new CheckoutPage(driver);
+
+		// Click the Back button on the checkout page
+		checkoutPage.clickBack();
+
+		// Log current URL after clicking back
+		String currentUrlAfter = driver.getCurrentUrl();
+		logger.debug("Current URL after clicking Back: {}", currentUrlAfter);
+
+		// Verify that clicking the Back button returns to the payment page URL
+		assertEquals("Expected to return to the payment page URL after clicking back.",
+				"https://jpetstore.aspectran.com/order/newOrderForm", currentUrlAfter);
+
+		logger.info("Back button successfully returned to payment page.");
+	}
+
+	private void verifyOrderDetails(ConfirmationPage confirmationPage2) {
+		// Verify that order details in confirmation page
+		logger.debug("Verifying order details values in Confirmation Page...");
+		try {
+
+			logger.debug("Checking: ItemID = '{}'", confirmationPage.getItemID());
+			assertEquals(testItemID, confirmationPage.getItemID());
+
+			logger.debug("Checking: ItemDescription = '{}'", confirmationPage.getItemDescription());
+			assertEquals(testItemDescription, confirmationPage.getItemDescription());
+
+			logger.debug("Checking: ItemQuantity = '{}'", confirmationPage.getItemQuantity());
+			assertEquals(testItemQuantity, confirmationPage.getItemQuantity());
+
+			logger.debug("Checking: ItemPrice = '{}'", confirmationPage.getItemPrice());
+			assertEquals(testItemPrice, confirmationPage.getItemPrice());
+
+			logger.debug("Checking: ItemTotalCost: = '{}'", confirmationPage.getItemTotalCost());
+			assertEquals(testItemTotalCost, confirmationPage.getItemTotalCost());
+
+			logger.debug("Checking: OrderTotalCost: = '{}'", confirmationPage.getOrderTotalCost());
+			assertEquals(testOrderTotalCost, confirmationPage.getOrderTotalCost());
+
+			logger.info("All order details match in confirmation page");
+
+		} catch (AssertionError e) {
+			logger.error("Field mismatch: {}", e.getMessage());
+			throw e;
+		}
+
+	}
+
+	private void verifyPaymentAndBillingDetails(ConfirmationPage confirmationPage2) {
+		// Verify that confirmation page fields match what was entered in payment
+		logger.debug("Verifying values in Confirmation Page...");
+		try {
+
+			logger.debug("Checking: CardType = '{}'", confirmationPage.getCardType());
+			assertEquals(testCardType, confirmationPage.getCardType());
+
+			logger.debug("Checking: CardNumber = '{}'", confirmationPage.getCardNumber());
+			assertEquals(testCardNumber, confirmationPage.getCardNumber());
+
+			logger.debug("Checking: ExpiryDate = '{}'", confirmationPage.getExpiryDate());
+			assertEquals(testExpiry, confirmationPage.getExpiryDate());
+
+			logger.debug("Checking: FirstName = '{}'", confirmationPage.getFirstName());
+			assertEquals(testFirstName, confirmationPage.getFirstName());
+
+			logger.debug("Checking: LastName: = '{}'", confirmationPage.getLastName());
+			assertEquals(testLastName, confirmationPage.getLastName());
+
+			logger.debug("Checking: Addres1: = '{}'", confirmationPage.getAddress1());
+			assertEquals(testAddress1, confirmationPage.getAddress1());
+
+			logger.debug("Checking: Addres2: = '{}'", confirmationPage.getAddress2());
+			assertEquals(testAddress2, confirmationPage.getAddress2());
+
+			logger.debug("Checking: LastName: = '{}'", confirmationPage.getLastName());
+			assertEquals(testCity, confirmationPage.getCity());
+
+			logger.debug("Checking: State: = '{}'", confirmationPage.getState());
+			assertEquals(testState, confirmationPage.getState());
+
+			logger.debug("Checking: Zip: = '{}'", confirmationPage.getZip());
+			assertEquals(testZip, confirmationPage.getZip());
+
+			logger.debug("Checking: Country: = '{}'", confirmationPage.getCountry());
+			assertEquals(testCountry, confirmationPage.getCountry());
+
+			logger.info("All checkout fields match payment inputs in confirmation page");
+
+		} catch (AssertionError e) {
+			logger.error("Field mismatch: {}", e.getMessage());
+			throw e;
+		}
+
+	}
+
+	private void checkConfirmationMessage(ConfirmationPage confirmationPage2) {
+		// Check confirmation message
+		String confirmationText = confirmationPage.getConfirmationText();
+		logger.debug("Confirmation message received: {}", confirmationText);
+		assertEquals("Thank you, your order has been submitted.", confirmationText);
+
+		logger.info("Confirmation page message: {}", confirmationText);
+
+	}
+
+	private void verifyBillingAddressFields(CheckoutPage checkoutPage2) {
 		// Verify that checkout page fields match what was entered in payment
 		logger.debug("Verifying values in Checkout Page...");
 		try {
@@ -106,42 +238,12 @@ public class CheckoutTest extends BaseTest {
 			logger.debug("Checking: Country: = '{}'", checkoutPage.getCountry());
 			assertEquals(testCountry, checkoutPage.getCountry());
 
-			logger.info("All checkout fields match payment inputs");
+			logger.info("All checkout fields match payment inputs in checkout page");
 
 		} catch (AssertionError e) {
 			logger.error("Field mismatch: {}", e.getMessage());
 			throw e;
 		}
-
-		// Click Confirm button
-		checkoutPage.clickConfirm();
-
-		// Check confirmation message
-		confirmationPage = new ConfirmationPage(driver);
-		String confirmationText = confirmationPage.getConfirmationText();
-		logger.debug("Confirmation message received: {}", confirmationText);
-		assertEquals("Thank you, your order has been submitted.", confirmationText);
-
-		logger.info("Confirmation page message: {}", confirmationText);
-	}
-
-	@Test
-	public void testBackButtonReturnsToPaymentPage() {
-		logger.info("Starting test: Checkout Back Button navigation...");
-
-		checkoutPage = new CheckoutPage(driver);
-
-		// Click the Back button on the checkout page
-		checkoutPage.clickBack();
-
-		// Log current URL after clicking back
-		String currentUrlAfter = driver.getCurrentUrl();
-		logger.debug("Current URL after clicking Back: {}", currentUrlAfter);
-
-		// Verify that clicking the Back button returns to the payment page URL
-		assertEquals("Expected to return to the payment page URL after clicking back.", "https://jpetstore.aspectran.com/order/newOrderForm", currentUrlAfter);
-
-		logger.info("Back button successfully returned to payment page.");
 	}
 
 }
