@@ -44,7 +44,7 @@ public class ConfirmationPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public String getConfirmationText() {
+	public String getConfirmationText() {		
         return wait
           .until(ExpectedConditions.visibilityOf(messageBarConfirmation))
           .getText()

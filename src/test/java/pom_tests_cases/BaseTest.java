@@ -10,24 +10,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 
-import pages.SignUpPage;
 
 public abstract class BaseTest {
 
-    private static final Logger logger = Log.getLogger(BaseTest.class);
-    protected WebDriver driver;
+	private static final Logger logger = Log.getLogger(BaseTest.class);
+	protected WebDriver driver;
 
-    @Before
-    public void setUp() throws IOException{
-        driver = DriverFactory.getDriver();
-        driver.manage().window().maximize();
-        driver.get("https://jpetstore.aspectran.com/");
-    }
+	@Before
+	public void setUp() throws IOException {
+		driver = DriverFactory.getDriver();
+		driver.manage().window().maximize();
+		driver.get("https://jpetstore.aspectran.com/");
+	}
 
-	  @After
-	  public void tearDown() {
-          logger.debug("Quiting driver");
-	      if (driver != null) driver.quit();
-	  }
+	@After
+	public void tearDown() {
+		logger.debug("Quiting driver");
+		if (driver != null)
+			driver.quit();
+	}
 }
-

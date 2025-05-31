@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,14 +24,23 @@ public class CatalogPage extends BasePage {
     }
     
     public void openCatalog(String categoryName) {
-        logger.info("Navigating to Catagory page: {}", categoryName);
-        WebElement link = sidebarContent.findElement(By.linkText(categoryName));
-        wait.until(ExpectedConditions.elementToBeClickable(link))
-            .click();
+    	try {
+            logger.debug("Navigating to Catagory page: {}", categoryName);
+            WebElement sidebar = wait.until(
+            		ExpectedConditions.refreshed(
+                    ExpectedConditions.visibilityOf(sidebarContent)));
+            WebElement link = sidebar.findElement(By.linkText(categoryName));
+            wait.until(ExpectedConditions.elementToBeClickable(link)).click();
+    	}
+    	catch (Exception e) {
+            logger.error("failed to open catalog, error: ", e);
+            throw e;
+        }
+    	
     }
     
     public void openProduct(String profuctId) {
-    	logger.info("Navigating to Product page with id: {}", profuctId);
+    	logger.debug("Navigating to Product page with id: {}", profuctId);
         WebElement link = catalogContent.findElement(By.linkText(profuctId));
         wait.until(ExpectedConditions.elementToBeClickable(link))
             .click();

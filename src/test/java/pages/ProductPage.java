@@ -11,8 +11,9 @@ import utils.Log;
 
 public class ProductPage extends BasePage {
 	private static final Logger logger = Log.getLogger(ProductPage.class);
-	@FindBy(css = "div.MenuContent a[href='/cart/viewCart']")
-	private WebElement cartLink;
+	
+    @FindBy(linkText="Proceed to Checkout") private WebElement proceedToCheckoutButton;
+	@FindBy(css = "div.MenuContent a[href='/cart/viewCart']") private WebElement cartLink;
 
 	public ProductPage(WebDriver driver) {
 		super(driver);
@@ -20,6 +21,7 @@ public class ProductPage extends BasePage {
 	}
 
 	public int getCartCount() {
+        logger.debug("Checking cart count");
 		String text = wait.until(ExpectedConditions.visibilityOf(cartLink)).getText().trim();
 		try {
 			return Integer.parseInt(text);
@@ -29,8 +31,21 @@ public class ProductPage extends BasePage {
 	}
 
 	public void addProductToCart(String productId) {
+		logger.debug("Adding product to cart");
 		By locator = By.xpath(String.format(
 				"//td[normalize-space()='%s']/following-sibling::td//a[normalize-space()='Add to Cart']", productId));
 		wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 	}
+	
+	public void clickProceedToCheckout() {
+		logger.debug("Proceed to Checkout");
+		wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButton)).click();
+		
+	}
+	
+	public boolean checkIfInvisibileProceedToCheckout() {
+		logger.debug("Verify Proceed to Checkout button is not visible");
+		return wait.until(ExpectedConditions.invisibilityOf(proceedToCheckoutButton));		
+	}
+
 }

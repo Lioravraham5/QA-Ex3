@@ -78,7 +78,6 @@ public class AddToCartTest extends BaseTest {
                 int after = productPage.getCartCount();
                 logger.debug("Cart count after add: {}", after);
 
-                // verify increment
                 assertEquals(
                   String.format("Cart count should go up by 1 for product %s", productId),
                   before + 1, after
@@ -91,8 +90,8 @@ public class AddToCartTest extends BaseTest {
                 );
 
                 logger.info("Scenario #{} passed", i+1);
-            } catch (Exception | AssertionError e) {
-                logger.error("Scenario #{} failed: category='{}', productId='{}'", i+1, category, productId, e);
+            } catch (AssertionError | Exception e) {
+                logger.error("Scenario #{} failed: category='{}', productId='{}'", i+1, category, productId);
             }
         }
 

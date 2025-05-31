@@ -35,6 +35,6 @@ public class CartPage extends BasePage {
     
     public void clickProceedToCheckout() {
         logger.debug("Clicking proceed to checkout button");
-    	ProceedToCheckoutButton.click(); 
+        wait.until(ExpectedConditions.elementToBeClickable(ProceedToCheckoutButton)).click(); 
     }
 }

@@ -93,7 +93,7 @@ public class SignUpPage extends BasePage {
 
     public SignUpPage open() {
         logger.debug("Clicking Sign Up link");
-        signUpLink.click();
+        wait.until(ExpectedConditions.elementToBeClickable(signUpLink)).click();
         return this;
     }
 
@@ -169,10 +169,10 @@ public class SignUpPage extends BasePage {
     public SignUpPage enableMyList(boolean enable) {
         if (enable && !listCheckbox.isSelected()) {
             logger.debug("Enabling MyList option");
-            listCheckbox.click();
+            wait.until(ExpectedConditions.elementToBeClickable(listCheckbox)).click();
         } else if (!enable && listCheckbox.isSelected()) {
             logger.debug("Disabling MyList option");
-            listCheckbox.click();
+            wait.until(ExpectedConditions.elementToBeClickable(listCheckbox)).click();
         }
         return this;
     }
@@ -180,17 +180,17 @@ public class SignUpPage extends BasePage {
     public SignUpPage enableMyBanner(boolean enable) {
         if (enable && !bannerCheckbox.isSelected()) {
             logger.debug("Enabling MyBanner option");
-            bannerCheckbox.click();
+            wait.until(ExpectedConditions.elementToBeClickable(bannerCheckbox)).click();
         } else if (!enable && bannerCheckbox.isSelected()) {
             logger.debug("Disabling MyBanner option");
-            bannerCheckbox.click();
+            wait.until(ExpectedConditions.elementToBeClickable(bannerCheckbox)).click();
         }
         return this;
     }
 
     public void clickSubmit() {
         logger.debug("Clicking submit button");
-        submitButton.click(); 
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click(); 
     }
     
     public boolean successfulSignup() {

@@ -26,7 +26,7 @@ public class SignInTest extends BaseTest {
         JSONParser parser = new JSONParser();
         try (FileReader reader = new FileReader("signIn.json")) {
             testCases = (JSONArray) parser.parse(reader);
-            logger.info("Loaded {} sign in scenarios", testCases.size());
+            logger.debug("Loaded {} sign in scenarios", testCases.size());
         } catch (FileNotFoundException e) {
             logger.error("signIn.json not found", e);
             throw e;
@@ -47,7 +47,7 @@ public class SignInTest extends BaseTest {
             String username = data.get("Username").toString();
             String password = data.get("Password").toString();
 
-            logger.info("Scenario #{}: {}", i + 1, name);
+            logger.debug("Scenario #{}: {}", i + 1, name);
             
             try {
                 driver.get("https://jpetstore.aspectran.com/");

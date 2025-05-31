@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.*;
 import org.apache.logging.log4j.*;
+
 import utils.Log;
 import pages.SignUpPage;
 
@@ -20,8 +21,8 @@ public class SignUpTest extends BaseTest {
 
     private static final Logger logger = Log.getLogger(SignUpTest.class);
     private JSONArray testCases;
-    private SignUpPage signUpPage;    
-
+    private SignUpPage signUpPage;
+    	
     @Before
     public void loadTestCases() throws Exception {
         JSONParser parser = new JSONParser();
@@ -51,7 +52,6 @@ public class SignUpTest extends BaseTest {
             try {
                 driver.get("https://jpetstore.aspectran.com/");
                 signUpPage.signUp(data);
-//                Thread.sleep(2000);
                 
                 if (expectSuccess) {
                     assertTrue(

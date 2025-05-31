@@ -1,41 +1,114 @@
-[INFO ] 2025-05-30 10:35:29.391 [main] CheckoutTest - Starting Checkout Test setup...
-[INFO ] 2025-05-30 10:35:41.129 [main] CheckoutTest - Checkout Test setup completed successfully.
-[INFO ] 2025-05-30 10:35:41.129 [main] CheckoutTest - Starting test: Checkout Back Button navigation...
-[DEBUG] 2025-05-30 10:35:42.011 [main] CheckoutTest - Current URL after clicking Back: https://jpetstore.aspectran.com/order/newOrderForm
-[INFO ] 2025-05-30 10:35:42.011 [main] CheckoutTest - Back button successfully returned to payment page.
-[DEBUG] 2025-05-30 10:35:42.012 [main] BaseTest - Quiting driver
-[INFO ] 2025-05-30 10:35:45.951 [main] CheckoutTest - Starting Checkout Test setup...
-[INFO ] 2025-05-30 10:35:57.035 [main] CheckoutTest - Checkout Test setup completed successfully.
-[INFO ] 2025-05-30 10:35:57.036 [main] CheckoutTest - Starting checkout values and confirmation test...
-[DEBUG] 2025-05-30 10:35:57.037 [main] CheckoutTest - Verifying values in Checkout Page...
-[DEBUG] 2025-05-30 10:35:57.604 [main] CheckoutTest - Checking: FirstName = 'Alice'
-[DEBUG] 2025-05-30 10:35:57.702 [main] CheckoutTest - Checking: LastName: = 'Wonder'
-[DEBUG] 2025-05-30 10:35:57.805 [main] CheckoutTest - Checking: Addres1: = '123 Main'
-[DEBUG] 2025-05-30 10:35:57.881 [main] CheckoutTest - Checking: Addres2: = '123 second'
-[DEBUG] 2025-05-30 10:35:57.989 [main] CheckoutTest - Checking: LastName: = 'Wonder'
-[DEBUG] 2025-05-30 10:35:58.065 [main] CheckoutTest - Checking: State: = 'NY'
-[DEBUG] 2025-05-30 10:35:58.140 [main] CheckoutTest - Checking: Zip: = '10001'
-[DEBUG] 2025-05-30 10:35:58.209 [main] CheckoutTest - Checking: Country: = 'USA'
-[INFO ] 2025-05-30 10:35:58.243 [main] CheckoutTest - All checkout fields match payment inputs in checkout page
-[DEBUG] 2025-05-30 10:35:59.164 [main] CheckoutTest - Confirmation message received: Thank you, your order has been submitted.
-[INFO ] 2025-05-30 10:35:59.164 [main] CheckoutTest - Confirmation page message: Thank you, your order has been submitted.
-[DEBUG] 2025-05-30 10:35:59.164 [main] CheckoutTest - Verifying values in Confirmation Page...
-[DEBUG] 2025-05-30 10:35:59.207 [main] CheckoutTest - Checking: CardType = 'Visa'
-[DEBUG] 2025-05-30 10:35:59.277 [main] CheckoutTest - Checking: FirstName = 'Alice'
-[DEBUG] 2025-05-30 10:35:59.348 [main] CheckoutTest - Checking: LastName: = 'Wonder'
-[DEBUG] 2025-05-30 10:35:59.412 [main] CheckoutTest - Checking: Addres1: = '123 Main'
-[DEBUG] 2025-05-30 10:35:59.473 [main] CheckoutTest - Checking: Addres2: = '123 second'
-[DEBUG] 2025-05-30 10:35:59.535 [main] CheckoutTest - Checking: LastName: = 'Wonder'
-[DEBUG] 2025-05-30 10:35:59.604 [main] CheckoutTest - Checking: State: = 'NY'
-[DEBUG] 2025-05-30 10:35:59.667 [main] CheckoutTest - Checking: Zip: = '10001'
-[DEBUG] 2025-05-30 10:35:59.730 [main] CheckoutTest - Checking: Country: = 'USA'
-[INFO ] 2025-05-30 10:35:59.761 [main] CheckoutTest - All checkout fields match payment inputs in confirmation page
-[DEBUG] 2025-05-30 10:35:59.761 [main] CheckoutTest - Verifying order details values in Confirmation Page...
-[DEBUG] 2025-05-30 10:35:59.797 [main] CheckoutTest - Checking: ItemID = 'EST-1'
-[DEBUG] 2025-05-30 10:35:59.864 [main] CheckoutTest - Checking: ItemDescription = 'Large Angelfish'
-[DEBUG] 2025-05-30 10:35:59.942 [main] CheckoutTest - Checking: ItemQuantity = '1'
-[DEBUG] 2025-05-30 10:36:00.044 [main] CheckoutTest - Checking: ItemPrice = '$16.50'
-[DEBUG] 2025-05-30 10:36:00.125 [main] CheckoutTest - Checking: ItemTotalCost: = '$16.50'
-[DEBUG] 2025-05-30 10:36:00.195 [main] CheckoutTest - Checking: OrderTotalCost: = '$16.50'
-[INFO ] 2025-05-30 10:36:00.225 [main] CheckoutTest - All order details match in confirmation page
-[DEBUG] 2025-05-30 10:36:00.225 [main] BaseTest - Quiting driver
+[DEBUG] 2025-05-31 21:06:24.123 [main] SignInTest - Loaded 5 sign in scenarios
+[INFO ] 2025-05-31 21:06:24.143 [main] SignInTest - Starting sign in scenarios (5)
+[DEBUG] 2025-05-31 21:06:24.144 [main] SignInTest - Scenario #1: Existing user enters valid login details and clicks Login
+[INFO ] 2025-05-31 21:06:32.288 [main] SignInTest - Scenario #1 passed
+[DEBUG] 2025-05-31 21:06:32.288 [main] SignInTest - Scenario #2: User enters login details with an error in one of the login fields and clicks Login
+[INFO ] 2025-05-31 21:06:35.431 [main] SignInTest - Scenario #2 passed
+[DEBUG] 2025-05-31 21:06:35.431 [main] SignInTest - Scenario #3: User enters login details with an expired password and clicks Login
+[INFO ] 2025-05-31 21:06:43.114 [main] SignInTest - Scenario #3 passed
+[DEBUG] 2025-05-31 21:06:43.115 [main] SignInTest - Scenario #4: User does not enter username details in username login field and clicks Login
+[INFO ] 2025-05-31 21:06:50.691 [main] SignInTest - Scenario #4 passed
+[DEBUG] 2025-05-31 21:06:50.691 [main] SignInTest - Scenario #5: User does not enter password details in password login field and clicks Login
+[INFO ] 2025-05-31 21:06:58.461 [main] SignInTest - Scenario #5 passed
+[INFO ] 2025-05-31 21:06:58.461 [main] SignInTest - All sign in scenarios completed successfully
+[DEBUG] 2025-05-31 21:06:58.461 [main] BaseTest - Quiting driver
+[INFO ] 2025-05-31 21:07:09.351 [main] AddToCartTest - Loaded 4 entries from productCategories.json
+[INFO ] 2025-05-31 21:07:09.352 [main] AddToCartTest - Starting Add-To-Cart scenarios (4 records)
+[INFO ] 2025-05-31 21:07:09.352 [main] AddToCartTest - Scenario #1: category='Fish', productId='FI-SW-01'
+[DEBUG] 2025-05-31 21:07:11.915 [main] AddToCartTest - Cart count before add: 0
+[DEBUG] 2025-05-31 21:07:13.468 [main] AddToCartTest - Cart count after add: 1
+[INFO ] 2025-05-31 21:07:13.489 [main] AddToCartTest - Scenario #1 passed
+[INFO ] 2025-05-31 21:07:13.489 [main] AddToCartTest - Scenario #2: category='Fish', productId='FI-SW-01'
+[DEBUG] 2025-05-31 21:07:15.082 [main] AddToCartTest - Cart count before add: 1
+[DEBUG] 2025-05-31 21:07:15.984 [main] AddToCartTest - Cart count after add: 1
+[ERROR] 2025-05-31 21:07:15.985 [main] AddToCartTest - Scenario #2 failed: category='Fish', productId='FI-SW-01'
+[INFO ] 2025-05-31 21:07:15.985 [main] AddToCartTest - Scenario #3: category='Dogs', productId='K9-DL-01'
+[DEBUG] 2025-05-31 21:07:17.580 [main] AddToCartTest - Cart count before add: 1
+[DEBUG] 2025-05-31 21:07:18.554 [main] AddToCartTest - Cart count after add: 2
+[INFO ] 2025-05-31 21:07:18.573 [main] AddToCartTest - Scenario #3 passed
+[INFO ] 2025-05-31 21:07:18.573 [main] AddToCartTest - Scenario #4: category='Reptiles', productId='RP-SN-01'
+[DEBUG] 2025-05-31 21:07:20.214 [main] AddToCartTest - Cart count before add: 2
+[DEBUG] 2025-05-31 21:07:21.228 [main] AddToCartTest - Cart count after add: 3
+[INFO ] 2025-05-31 21:07:21.247 [main] AddToCartTest - Scenario #4 passed
+[INFO ] 2025-05-31 21:07:21.247 [main] AddToCartTest - All Add-To-Cart scenarios completed
+[DEBUG] 2025-05-31 21:07:21.247 [main] BaseTest - Quiting driver
+[DEBUG] 2025-05-31 21:07:35.844 [main] PaymentTest - Loaded 9 payment/billing scenarios
+[DEBUG] 2025-05-31 21:07:35.844 [main] PaymentTest - Starting payment/billing scenarios (9)
+[DEBUG] 2025-05-31 21:07:37.942 [main] PaymentTest - Scenario #1: Valid payment & billing info
+[INFO ] 2025-05-31 21:07:40.003 [main] PaymentTest - Scenario #1 passed
+[DEBUG] 2025-05-31 21:07:40.003 [main] PaymentTest - Scenario #2: Missing card number
+[ERROR] 2025-05-31 21:07:42.193 [main] PaymentTest - Scenario #2 failed
+[DEBUG] 2025-05-31 21:07:42.193 [main] PaymentTest - Scenario #3: Invalid card number (non-numeric)
+[ERROR] 2025-05-31 21:07:44.079 [main] PaymentTest - Scenario #3 failed
+[DEBUG] 2025-05-31 21:07:44.080 [main] PaymentTest - Scenario #4: Expired card
+[ERROR] 2025-05-31 21:07:45.950 [main] PaymentTest - Scenario #4 failed
+[DEBUG] 2025-05-31 21:07:45.951 [main] PaymentTest - Scenario #5: Invalid expiry date format
+[ERROR] 2025-05-31 21:07:47.805 [main] PaymentTest - Scenario #5 failed
+[DEBUG] 2025-05-31 21:07:47.806 [main] PaymentTest - Scenario #6: Missing first name
+[INFO ] 2025-05-31 21:07:49.641 [main] PaymentTest - Scenario #6 passed
+[DEBUG] 2025-05-31 21:07:49.641 [main] PaymentTest - Scenario #7: Missing address line 1
+[INFO ] 2025-05-31 21:07:51.506 [main] PaymentTest - Scenario #7 passed
+[DEBUG] 2025-05-31 21:07:51.506 [main] PaymentTest - Scenario #8: Invalid ZIP code (letters)
+[ERROR] 2025-05-31 21:07:53.305 [main] PaymentTest - Scenario #8 failed
+[DEBUG] 2025-05-31 21:07:53.305 [main] PaymentTest - Scenario #9: Ship to different address checked
+[ERROR] 2025-05-31 21:07:54.556 [main] PaymentTest - Scenario #9 failed
+[DEBUG] 2025-05-31 21:07:54.557 [main] BaseTest - Quiting driver
+[DEBUG] 2025-05-31 21:08:07.885 [main] PaymentTest - Loaded 9 payment/billing scenarios
+[DEBUG] 2025-05-31 21:08:07.885 [main] PaymentTest - Check if non signed in user is redirected to sign in after clicking Proceed to Checkout button
+[DEBUG] 2025-05-31 21:08:22.333 [main] PaymentTest - https://jpetstore.aspectran.com/account/signonForm?referer=%2Forder%2FnewOrderForm
+[INFO ] 2025-05-31 21:08:22.333 [main] PaymentTest - Non signed in user is navigated to sign in page after clicking Proceed to checkout button
+[DEBUG] 2025-05-31 21:08:22.333 [main] BaseTest - Quiting driver
+[DEBUG] 2025-05-31 21:08:36.056 [main] PaymentTest - Loaded 9 payment/billing scenarios
+[DEBUG] 2025-05-31 21:08:36.056 [main] PaymentTest - Check if with an empty cart user can continue to Payment page
+[INFO ] 2025-05-31 21:08:36.090 [main] PaymentTest - Proceed to checkout button is not visible to user with empty cart
+[DEBUG] 2025-05-31 21:08:36.090 [main] BaseTest - Quiting driver
+[INFO ] 2025-05-31 21:08:41.381 [main] CheckoutTest - Starting Checkout Test setup...
+[INFO ] 2025-05-31 21:08:54.067 [main] CheckoutTest - Checkout Test setup completed successfully.
+[INFO ] 2025-05-31 21:08:54.068 [main] CheckoutTest - Starting test: Checkout Back Button navigation...
+[DEBUG] 2025-05-31 21:08:54.546 [main] CheckoutTest - Current URL after clicking Back: https://jpetstore.aspectran.com/order/newOrderForm
+[INFO ] 2025-05-31 21:08:54.546 [main] CheckoutTest - Back button successfully returned to payment page.
+[DEBUG] 2025-05-31 21:08:54.546 [main] BaseTest - Quiting driver
+[INFO ] 2025-05-31 21:08:59.228 [main] CheckoutTest - Starting Checkout Test setup...
+[INFO ] 2025-05-31 21:09:12.414 [main] CheckoutTest - Checkout Test setup completed successfully.
+[INFO ] 2025-05-31 21:09:12.414 [main] CheckoutTest - Starting checkout values and confirmation test...
+[DEBUG] 2025-05-31 21:09:12.414 [main] CheckoutTest - Verifying values in Checkout Page...
+[DEBUG] 2025-05-31 21:09:12.524 [main] CheckoutTest - Checking: FirstName  = 'Alice'
+[DEBUG] 2025-05-31 21:09:13.145 [main] CheckoutTest - Checking: LastName   = 'Wonder'
+[DEBUG] 2025-05-31 21:09:13.174 [main] CheckoutTest - Checking: Address1   = '123 Main'
+[DEBUG] 2025-05-31 21:09:13.204 [main] CheckoutTest - Checking: Address2   = '123 second'
+[DEBUG] 2025-05-31 21:09:13.233 [main] CheckoutTest - Checking: City       = 'New York'
+[DEBUG] 2025-05-31 21:09:13.262 [main] CheckoutTest - Checking: State      = 'NY'
+[DEBUG] 2025-05-31 21:09:13.288 [main] CheckoutTest - Checking: Zip        = '10001'
+[DEBUG] 2025-05-31 21:09:13.315 [main] CheckoutTest - Checking: Country    = 'USA'
+[INFO ] 2025-05-31 21:09:13.359 [main] CheckoutTest - All checkout fields match payment inputs in checkout page
+[INFO ] 2025-05-31 21:09:21.425 [main] CheckoutTest - https://jpetstore.aspectran.com/order/newOrder
+[ERROR] 2025-05-31 21:09:21.425 [main] CheckoutTest - Failed Test: Expected to return to the confirmation page URL after clicking confirm.
+[DEBUG] 2025-05-31 21:09:21.456 [main] CheckoutTest - Confirmation message received: Thank you, your order has been submitted.
+[DEBUG] 2025-05-31 21:09:21.457 [main] CheckoutTest - Verifying payment & billing values in Confirmation Page…
+[DEBUG] 2025-05-31 21:09:21.457 [main] CheckoutTest - Checking: CardType       = 'MasterCard'
+[DEBUG] 2025-05-31 21:09:21.489 [main] CheckoutTest - Checking: CardNumber     = '4111111111111111'
+[DEBUG] 2025-05-31 21:09:21.538 [main] CheckoutTest - Checking: ExpiryDate     = '12/2025'
+[DEBUG] 2025-05-31 21:09:21.564 [main] CheckoutTest - Checking: FirstName      = 'Alice'
+[DEBUG] 2025-05-31 21:09:21.589 [main] CheckoutTest - Checking: LastName       = 'Wonder'
+[DEBUG] 2025-05-31 21:09:21.610 [main] CheckoutTest - Checking: Address1       = '123 Main'
+[DEBUG] 2025-05-31 21:09:21.631 [main] CheckoutTest - Checking: Address2       = '123 second'
+[DEBUG] 2025-05-31 21:09:21.655 [main] CheckoutTest - Checking: City           = 'New York'
+[DEBUG] 2025-05-31 21:09:21.676 [main] CheckoutTest - Checking: State          = 'NY'
+[DEBUG] 2025-05-31 21:09:21.698 [main] CheckoutTest - Checking: Zip            = '10001'
+[DEBUG] 2025-05-31 21:09:21.722 [main] CheckoutTest - Checking: Country        = 'USA'
+[ERROR] 2025-05-31 21:09:21.745 [main] CheckoutTest - payment & billing details verification in confirmation page failed:
+
+The following 3 assertions failed:
+1) expected:<"[MasterCard]"> but was:<"[Visa]">
+2) expected:<"[4111111111111111]"> but was:<"[999999999999999 * Fake number!]">
+3) expected:<"12/20[25]"> but was:<"12/20[19]">
+
+[DEBUG] 2025-05-31 21:09:21.746 [main] CheckoutTest - Verifying product-details values in Confirmation Page…
+[DEBUG] 2025-05-31 21:09:21.746 [main] CheckoutTest - Checking: ItemID          = 'EST-1'
+[DEBUG] 2025-05-31 21:09:21.773 [main] CheckoutTest - Checking: ItemDescription = 'Large Angelfish'
+[DEBUG] 2025-05-31 21:09:21.799 [main] CheckoutTest - Checking: ItemQuantity    = '1'
+[DEBUG] 2025-05-31 21:09:21.824 [main] CheckoutTest - Checking: ItemPrice       = '$16.50'
+[DEBUG] 2025-05-31 21:09:21.851 [main] CheckoutTest - Checking: ItemTotalCost   = '$16.50'
+[DEBUG] 2025-05-31 21:09:21.875 [main] CheckoutTest - Checking: OrderTotalCost  = '$16.50'
+[INFO ] 2025-05-31 21:09:21.899 [main] CheckoutTest - All order details match in confirmation page
+[DEBUG] 2025-05-31 21:09:21.899 [main] BaseTest - Quiting driver

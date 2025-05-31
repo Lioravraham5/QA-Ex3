@@ -1,6 +1,7 @@
 package pages;
 
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,11 +15,7 @@ public class CheckoutPage extends BasePage {
     
     // Message Bar confirmation 
     @FindBy(xpath="//div[@id='MessageBar']/p")   private WebElement messageBarConfirmation;
-    
-    // Buttons
-    @FindBy(xpath = "//*[@id='CenterForm']/form/div/button[1]") private WebElement confirmButton;
-    @FindBy(xpath = "//*[@id='CenterForm']/form/div/button[2]") private WebElement backButton;
-    
+        
     // Order Date
     @FindBy(xpath = "//*[@id=\"CenterForm\"]/form/table[1]/tbody/tr/td[2]") private WebElement orderDateValue;
   
@@ -32,6 +29,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//td[contains(text(), 'Zip')]/following-sibling::td") private WebElement zipValue;
     @FindBy(xpath = "//td[contains(text(), 'Country')]/following-sibling::td") private WebElement countryValue;
     
+    // Buttons
+    private By confirmButton = By.xpath("//*[@id='CenterForm']/form/div/button[1]");
+    private By backButton = By.xpath("//*[@id='CenterForm']/form/div/button[2]");
     
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -46,49 +46,66 @@ public class CheckoutPage extends BasePage {
     }
     
     public String getFirstName() {
-        return wait.until(ExpectedConditions.visibilityOf(firstNameValue)).getText().trim();
+        return wait.until(
+                ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(firstNameValue))).getText().trim();
     }
     
     public String getLastName() {
-        return wait.until(ExpectedConditions.visibilityOf(lastNameValue)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(lastNameValue))).getText().trim();
     }
     
     public String getAddress1() {
-        return wait.until(ExpectedConditions.visibilityOf(address1Value)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(address1Value))).getText().trim();
     }
 
     public String getAddress2() {
-        return wait.until(ExpectedConditions.visibilityOf(address2Value)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(address2Value))).getText().trim();
     }
 
     public String getCity() {
-        return wait.until(ExpectedConditions.visibilityOf(cityValue)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(cityValue))).getText().trim();
     }
 
     public String getState() {
-        return wait.until(ExpectedConditions.visibilityOf(stateValue)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(stateValue))).getText().trim();
     }
 
     public String getZip() {
-        return wait.until(ExpectedConditions.visibilityOf(zipValue)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(zipValue))).getText().trim();
     }
 
     public String getCountry() {
-        return wait.until(ExpectedConditions.visibilityOf(countryValue)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(countryValue))).getText().trim();
     }
 
     public String getOrderDate() {
-        return wait.until(ExpectedConditions.visibilityOf(orderDateValue)).getText().trim();
+        return wait.until(
+        		ExpectedConditions.refreshed(
+        		ExpectedConditions.visibilityOf(orderDateValue))).getText().trim();
     }
 
     public void clickConfirm() {
     	logger.debug("Clicking confirm button");
-        confirmButton.click();
-        wait.until(ExpectedConditions.urlContains("order/viewOrder"));
+    	wait.until(ExpectedConditions.elementToBeClickable(confirmButton)).click();
     }
 
     public void clickBack() {
     	logger.debug("Clicking back button");
-        backButton.click();
+    	wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
     }
 }

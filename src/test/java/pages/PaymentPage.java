@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -38,7 +39,6 @@ public class PaymentPage extends BasePage {
     @FindBy(xpath="//button[@type='button' and normalize-space()='Cancel']")   private WebElement cancelButton;
     
     // - Error Message -
-//    @FindBy(xpath="//span[contains(@class,'error-msg') and normalize-space()]")   private WebElement errorMessage;
     @FindBy(css="span.error-msg") private List<WebElement> errorSpans;
 
 
@@ -49,24 +49,28 @@ public class PaymentPage extends BasePage {
     }
     
     public PaymentPage selectCardType(String type) {
-        wait.until(dropdownToBePopulated(cardTypeSelect))
+    	logger.debug("Selecting card type: {}", type);
+    	wait.until(dropdownToBePopulated(cardTypeSelect))
         .selectByVisibleText(type);
         return this;
     }
     
     public PaymentPage enterCardNumber(String number) {
+    	logger.debug("Filling card number");
         cardNumberInput.clear();
         cardNumberInput.sendKeys(number);
         return this;
     }
 
     public PaymentPage enterExpiryDate(String mmYYYY) {
+    	logger.debug("Filling expiry date");
         expiryDateInput.clear();
         expiryDateInput.sendKeys(mmYYYY);
         return this;
     }
 
     public PaymentPage enterBillingName(String first, String last) {
+    	logger.debug("Filling billing first and last name");
         billFirstNameInput.clear();
         billFirstNameInput.sendKeys(first);
         billLastNameInput.clear();
@@ -77,6 +81,7 @@ public class PaymentPage extends BasePage {
     public PaymentPage enterBillingAddress(
         String addr1, String addr2, String city, String state, String zip, String country
     ) {
+    	logger.debug("Filling billing addresses");
         billAddress1Input.clear();
         billAddress1Input.sendKeys(addr1);
         billAddress2Input.clear();
@@ -94,17 +99,20 @@ public class PaymentPage extends BasePage {
 
     public PaymentPage shipToDifferentAddress(boolean yes) {
         if (shippingAddressRequired.isSelected() != yes) {
-        	shippingAddressRequired.click();
+        	logger.debug("Selecting Ship to different address");
+            wait.until(ExpectedConditions.elementToBeClickable(shippingAddressRequired)).click();
         }
         return this;
     }
-
+    
     public void clickContinue() {
-        continueButton.click();
+    	logger.debug("Clicking Continue button");
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
     public void clickCancel() {
-        cancelButton.click();
+    	logger.debug("Clicking Cancel button");
+        wait.until(ExpectedConditions.elementToBeClickable(cancelButton)).click();
     }
     
 

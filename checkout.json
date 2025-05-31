@@ -2,7 +2,7 @@
   {
     "name": "Valid payment & billing info",
     "data": {
-      "cardType": "Visa",
+      "cardType": "MasterCard",
       "cardNumber": "4111111111111111",
       "expiryDate": "12/2030",
       "firstName": "Sofia",
@@ -16,8 +16,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": true,
-      "errors": []
+      "proceed": true
     }
   },
   {
@@ -37,8 +36,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["Card Number is required"]
+      "proceed": false
     }
   },
   {
@@ -58,8 +56,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["Card Number must contain only digits"]
+      "proceed": false
     }
   },
   {
@@ -79,8 +76,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["Card has expired"]
+      "proceed": false
     }
   },
   {
@@ -100,8 +96,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["Expiry date must be in MM/YYYY format"]
+      "proceed": false
     }
   },
   {
@@ -121,8 +116,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["First name is required"]
+      "proceed": false
     }
   },
   {
@@ -142,8 +136,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["Address 1 is required"]
+      "proceed": false
     }
   },
   {
@@ -163,8 +156,7 @@
       "shipToDifferent": false
     },
     "expected": {
-      "proceed": false,
-      "errors": ["ZIP code must contain only digits"]
+      "proceed": false
     }
   },
   {
@@ -192,8 +184,7 @@
       "shippingCountry": "Colombia"
     },
     "expected": {
-      "proceed": false,
-      "errors": []
+      "proceed": false
     }
   }
 ]

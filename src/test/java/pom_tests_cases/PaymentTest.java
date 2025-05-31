@@ -6,9 +6,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import utils.Log;
 import pages.CatalogPage;
 import pages.CheckoutPage;
@@ -42,26 +39,69 @@ public class PaymentTest extends BaseTest {
         // 2) Add a product to cart (Fish -> FI-SW-01)
         catalogPage = new CatalogPage(driver);
         productPage = new ProductPage(driver);
-        checkoutPage = new CheckoutPage(driver);  
+        checkoutPage = new CheckoutPage(driver); 
+        paymentPage = new PaymentPage(driver);
+
         catalogPage.openCatalog("Fish");
         catalogPage.openProduct("FI-SW-01");
-        productPage.addProductToCart("FI-SW-01");
         
 
         // Load JSON scenarios
         JSONParser parser = new JSONParser();
         try (FileReader reader = new FileReader("checkout.json")) {
             testCases = (JSONArray) parser.parse(reader);
-            logger.info("Loaded {} payment/billing scenarios", testCases.size());
+            logger.debug("Loaded {} payment/billing scenarios", testCases.size());
         } catch (FileNotFoundException e) {
-            logger.error("paymentBillingScenarios.json not found", e);
+            logger.error("checkout.json not found", e);
             throw e;
         }
     }
+    
+    @Test 
+    public void checkEmptyCartScenario() {
+    	logger.debug("Check if with an empty cart user can continue to Payment page");
+    	try {
+        	assertTrue("Proceed to checkout button should not be presented",
+        			productPage.checkIfInvisibileProceedToCheckout());
+        	logger.info("Proceed to checkout button is not visible to user with empty cart");
+    	}
+		catch (AssertionError | Exception e) {
+			logger.error("Failed Test: {}", e.getMessage());
+		}
+    }
+    
+    @Test 
+    public void checkNotSignedInScenario() {
+    	logger.debug("Check if non signed in user is redirected to sign in after clicking Proceed to Checkout button");
+    	
+    	try {
+        	signInPage.clickSignOut();
+    		driver.get("https://jpetstore.aspectran.com/");
+    		Thread.sleep(2000);
+            catalogPage.openCatalog("Fish");
+            catalogPage.openProduct("FI-SW-01");
+            productPage.addProductToCart("FI-SW-01");
+            productPage.clickProceedToCheckout();
+
+			String urlAfterClick = driver.getCurrentUrl();
+			Thread.sleep(8000);
+			logger.debug(urlAfterClick);
+        	assertTrue("Should navigate to sign in page",
+        			urlAfterClick.contains("account/signonForm"));
+        	logger.info("Non signed in user is navigated to sign in page after clicking Proceed to checkout button");
+    	}
+		catch (AssertionError | Exception e) {
+			logger.error("Failed Test: {}", e.getMessage());
+		}
+    }
+    
+    
 
     @Test
     public void runPaymentScenarios() {
-        logger.info("Starting payment/billing scenarios ({})", testCases.size());
+        logger.debug("Starting payment/billing scenarios ({})", testCases.size());
+        productPage.addProductToCart("FI-SW-01");
+        productPage.clickProceedToCheckout();
         boolean hasFailures = false;
 
         for (int i = 0; i < testCases.size(); i++) {
@@ -70,22 +110,15 @@ public class PaymentTest extends BaseTest {
             JSONObject data = (JSONObject) scenario.get("data");
             JSONObject expected = (JSONObject) scenario.get("expected");
             boolean proceed = (Boolean) expected.get("proceed");
-            JSONArray errors = (JSONArray) expected.get("errors");
 
-            logger.info("Scenario #{}: {}", i+1, name);
-            // 3) Navigate to payment page
+            logger.debug("Scenario #{}: {}", i+1, name);
             driver.get("https://jpetstore.aspectran.com/order/newOrderForm");
-            paymentPage = new PaymentPage(driver);
+            
 
             try {
             	
-                // 1) Card Type (dropdown)
-                if (data.containsKey("cardType")) {
-                    String type = data.get("cardType").toString();
-                    logger.debug("Selecting card type: {}", type);
-                    WebElement dropdown = driver.findElement(By.name("cardType"));
-                    new Select(dropdown).selectByVisibleText(type);
-                }
+                // 1) Card Type (dropdown)                
+                paymentPage.selectCardType(data.get("cardType").toString());                
 
                 // 2) Card Number
                 paymentPage.enterCardNumber(data.get("cardNumber").toString());
@@ -114,6 +147,12 @@ public class PaymentTest extends BaseTest {
                 paymentPage.shipToDifferentAddress(shipDiff);
 
                 // 7) Submit
+                if(shipDiff) {
+        			String currentUrlAfter = driver.getCurrentUrl();			
+        			assertEquals("Expected to navigate to the Shipping Address update page after selecting 'Ship to different address'.",
+        					"https://jpetstore.aspectran.com/order/newOrder", currentUrlAfter);
+        			logger.info("'Ship to different address' selection successfully navigated to Shipping Address update page.");
+                }
                 paymentPage.clickContinue();
 
                 // 8) Verify outcome
@@ -129,14 +168,6 @@ public class PaymentTest extends BaseTest {
                         String.format("Expected error in scenario '%s'", name),
                         errorMessage.isEmpty()
                         );
-
-//                    for (Object e : errors) {
-//                        String errMsg = e.toString();
-//                        assertTrue(
-//                            String.format("Expected error '%s' in scenario '%s'", errMsg, name),
-//                            actualErrors.contains(errMsg)
-//                        );
-//                    }
                 }
 
                 logger.info("Scenario #{} passed", i+1);

@@ -41,7 +41,6 @@ public abstract class BasePage {
     protected ExpectedCondition<Select> dropdownToBePopulated(final WebElement elm) {
         return driver -> {
             Select sel = new Select(elm);
-            // you can tweak the threshold if you know exactly how many options you expect
             return (sel.getOptions().size() > 0) ? sel : null;
         };
     }
